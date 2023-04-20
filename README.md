@@ -1,7 +1,5 @@
 # <img src="public/icons/icon_48.png" width="45" align="left"> IMDB Movie Player
 
-My Chrome Extension
-
 ## Features
 
 - Visit IMDB and select a title.
@@ -9,11 +7,16 @@ My Chrome Extension
 
 ## Install
 
-[**Chrome** extension]()
+To install:
+
+1. Download and Extract ZIP file from Releases
+2. Go to `chrome://extensions/`
+3. Click Load Unpacked
+4. Select the extracted ZIP Folder Location
 
 ## Contribution
 
-Suggestions and pull requests are welcomed!.
+Suggestions and pull requests are welcomed.
 
 ---
 
