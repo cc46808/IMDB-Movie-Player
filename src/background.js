@@ -1,21 +1,31 @@
-'use strict';
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.action.setIcon({ path: "icons/icon_disabled.png" });
+});
 
-// With background scripts you can communicate with popup
-// and contentScript files.
-// For more information on background script,
-// See https://developer.chrome.com/extensions/background_pages
+chrome.action.onClicked.addListener(function (tab) {
+  chrome.tabs.sendMessage(tab.id, { action: "updateUrl" }, function (response) {
+    if (response) {
+      chrome.action.setPopup({ tabId: tab.id, popup: "popup.html" });
+    }
+  });
+});
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.type === 'GREETINGS') {
-    const message = `Hi ${
-      sender.tab ? 'Con' : 'Pop'
-    }, my name is Bac. I am from Background. It's great to hear from you.`;
+// background.js
+const icons = {
+  enabled: "icons/icon.png",
+  disabled: "icons/icon_disabled.png"
+};
 
-    // Log message coming from the `request` parameter
-    console.log(request.payload.message);
-    // Send a response message
-    sendResponse({
-      message,
-    });
-  }
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (tab.url) {
+    if (tab.url.indexOf('title/tt') != -1) {
+      chrome.action.setIcon({ tabId, path: icons.enabled });
+      chrome.action.setPopup({ popup: "popup.html" });
+      chrome.action.setBadgeText({ tabId, text: '1' });
+      chrome.action.setBadgeTextColor({ tabId, color: "#000000" });
+      chrome.action.setBadgeBackgroundColor({ tabId, color: '#00FF00' });
+    } else {
+      chrome.action.setIcon({ tabId, path: icons.disabled });
+    };
+  };
 });
