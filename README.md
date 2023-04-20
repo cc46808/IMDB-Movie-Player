@@ -1,11 +1,11 @@
-# <img src="public/icons/icon_48.png" width="45" align="left"> Watch Imbd Movie
+# <img src="public/icons/icon_48.png" width="45" align="left"> IMDB Movie Player
 
 My Chrome Extension
 
 ## Features
 
-- Feature 1
-- Feature 2
+- Visit IMDB and select a title.
+- Click the extension icon for a direct link
 
 ## Install
 
